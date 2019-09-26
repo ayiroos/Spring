@@ -1,19 +1,24 @@
 package com.sooriya.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
+import java.util.Map;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.AbstractController;
 
-public class HelloController extends AbstractController {
+@Controller
+public class HelloController {
 
-	@Override
-	protected ModelAndView handleRequestInternal(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
-		// TODO Auto-generated method stub
+
+	@RequestMapping("/welcome/{country}/{name}")
+	protected ModelAndView myApp(@PathVariable Map<String, String> vars) {
 		
+		String country = vars.get("country");
+		String name = vars.get("name");
 		ModelAndView modelAndView = new ModelAndView("hello");
-		modelAndView.addObject("welcome", "Hey yoooo...Successfully done with Spring Basic app");
+		modelAndView.addObject("welcome", "Hey "+ name + "You are from "+ country);
 		return modelAndView;
 	}
 
