@@ -14,6 +14,14 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
   <context:component-scan base-package="com.sooriya.controller"/>
   <mvc:annotation-driven/>
   
+  <!-- Defining Interceptor class and the path of specific pages, so that it will get restricted to those pages instead of whole application -->
+  <mvc:interceptors>  
+  	<mvc:interceptor>
+  		<mvc:mapping path="/submitForm"/>
+  		<bean class="com.sooriya.controller.DayOfWeekBasedAccessInterceptor"/>
+  	</mvc:interceptor>
+  </mvc:interceptors>
+  
   <bean id="HandlerMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" /> 
   
  
