@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <!DOCTYPE html>
 <html>
@@ -9,28 +10,33 @@
 <title>Submit Form</title>
 </head>
 <body>
+<a href="/Spring1/submitForm?siteLanguage=en">English</a> | <a href="/Spring1/submitForm?siteLanguage=fr">French</a> 
 <h1>${headerMessage}</h1>
 
 <form:errors path="student1.*"/>
 
 <form action="/Spring1/getDetails" method="post">
-<p>Name : <input type="text" name="studentName"/></p>
-<p>Hobby : <input type="text" name="studentHobby"/></p>
-<p>Mobile : <input type="text" name="studentMobile"/></p>
-<p>Date of Birth : <input type="text" name="studentDOB"/></p>
-<p>Skillset : <select name="studentSkillSet" multiple>
+
+<table>
+<tr><td><spring:message code="label.studentName"/></td><td><input type="text" name="studentName"/></td></tr>
+<tr><td><spring:message code="label.studentHobby"/></td><td><input type="text" name="studentHobby"/></td></tr>
+<tr><td><spring:message code="label.studentMobile"/></td><td><input type="text" name="studentMobile"/></td></tr>
+<tr><td><spring:message code="label.studentDOB"/></td><td><input type="text" name="studentDOB"/></td></tr>
+<tr><td><spring:message code="label.studentSkillSet"/></td><td><select name="studentSkillSet" multiple>
 <option value="Java">Java</option>
 <option value="Devops">Devops</option>
 <option value=".Net">.Net</option>
 <option value="Machine Learning">Machine Learning</option>
-</select>
-</p>
-<p>Enter Address :</p> 
-<p>Country : <input type="text" name="studentAddress.country"/></p>
-<p>State : <input type="text" name="studentAddress.state"/></p>
-<p>Village : <input type="text" name="studentAddress.village"/></p>
-<p>Pincode : <input type="text" name="studentAddress.pincode"/></p>
-<p> <input type="submit" value="Click to Submit Details"/> </p>
+</select></td></tr>
+<tr><td><spring:message code="label.Address"/></td></tr>
+<tr>
+<td><spring:message code="label.country"/></td><td><input type="text" name="studentAddress.country"/></td>
+<td><spring:message code="label.state"/></td><td><input type="text" name="studentAddress.state"/></td>
+<td><spring:message code="label.village"/></td><td><input type="text" name="studentAddress.village"/></td>
+<td><spring:message code="label.pincode"/></td><td><input type="text" name="studentAddress.pincode"/></td>
+</tr>
+<tr><td><input type="submit" value=<spring:message code="label.submit"/>/></td></tr>
+</table>
 </form>
 </body>
 </html>
