@@ -6,6 +6,7 @@ import java.util.Date;
 
 import javax.validation.Valid;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +35,15 @@ public class HelloController {
 	}
 
 	@RequestMapping (value = "/submitForm", method = RequestMethod.GET)
-	public ModelAndView submitFormDetails () {
+	public ModelAndView submitFormDetails () throws Exception {
+		
+		String exception = "Exception";
+		
+		if (exception.equalsIgnoreCase("Exception")) {
+			
+			throw new Exception("Unknown Exception");
+			
+		}
 		
 		ModelAndView modelAndView = new ModelAndView ("SubmitForm");
 		return modelAndView;
@@ -59,10 +69,11 @@ public class HelloController {
 	
 	@ModelAttribute
 	public void commonObjects (Model model) {
-		
-			
+					
 		model.addAttribute("headerMessage","Sooriya's Farm");
 		
 	}
+	
+	
 
 }

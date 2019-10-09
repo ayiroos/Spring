@@ -11,7 +11,14 @@
 </head>
 <body>
 <a href="/Spring1/submitForm?siteLanguage=en">English</a> | <a href="/Spring1/submitForm?siteLanguage=fr">French</a> 
-<h1>${headerMessage}</h1>
+<link rel="stylesheet" href="<spring:theme code='styleSheet'/>" type="text/css" />
+
+<p>
+<a href="/Spring1/submitForm?siteTheme=green">Green</a>|
+<a href="/Spring1/submitForm?siteTheme=red">Red</a>
+</p>
+<h3>${headerMessage}</h3>
+<h3>Sooriya</h3>
 
 <form:errors path="student1.*"/>
 

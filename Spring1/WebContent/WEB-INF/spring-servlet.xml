@@ -23,6 +23,9 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
   	<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
   		<property name="paramName" value="siteLanguage"/>
   	</bean>
+  	<bean class="org.springframework.web.servlet.theme.ThemeChangeInterceptor">
+  		<property name="paramName" value="siteTheme"/>
+  	</bean>
   </mvc:interceptors>
   
   <bean id="HandlerMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" /> 
@@ -31,7 +34,6 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
  
  <!-- Used @RequestMapping annotation, hence removed below line -->
  <!-- <bean name="/welcome.html" class="com.sooriya.controller.HelloController" /> -->
- 
  
  
  <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -46,9 +48,33 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
   <bean id="messageSource"
   class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
   
-  	<property name="basename" value="/WEB-INF/studentmessages"/>
+  	<property name="basename" value="/WEB-INF/classes/studentmessages"/>
   	<property name="cacheSeconds" value="1"/>
   	
   </bean>
   <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver" />
+  <bean id="themeSource" class="org.springframework.ui.context.support.ResourceBundleThemeSource">
+  	<property name="basenamePrefix" value="theme-"/>  
+  </bean>
+  <bean id="themeResolver" class="org.springframework.web.servlet.theme.CookieThemeResolver">
+  	<property name="defaultThemeName" value="green"/>
+  </bean>
+  
+   
+  
+  <!-- <bean id="simpleMappingExceptionResolver" class="or
+  g.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+ 	<property name="exceptionMappings">
+ 		<map>
+ 			<entry key="NullPointerException" value="NullPointerException"/>
+ 			<entry key="IOException" value="IOException"/>
+ 		</map>
+ 	</property>
+ 	Default Exception view to be displayed in case the raised exception didn't match above mentioned types
+  	<property name="defaultErrorView" value="Exception" />
+ 	
+ 	Name of logger to use in to log exception, unset by default, so logging disabled
+  	<property name="warnLogCatagory" value="MVCLogger"/> 
+ </bean>  -->
+   
  </beans>
