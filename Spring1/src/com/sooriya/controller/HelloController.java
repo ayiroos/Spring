@@ -2,6 +2,7 @@ package com.sooriya.controller;
 
 
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.validation.Valid;
@@ -19,11 +20,32 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class HelloController {
 
+	@ResponseBody
+	@RequestMapping (value = "/students", method = RequestMethod.GET)
+	public ArrayList<Student> getListOfStudents() {
+		
+		ArrayList<Student> listOfStudents = new ArrayList<Student>();
+		Student s1= new Student();		
+		Student s2= new Student();
+		Student s3= new Student();
+		
+		s1.setStudentName("Chiranjeevi");
+		s2.setStudentName("Pawan Kalyan");
+		s3.setStudentName("Ram Charan");
+		
+		
+		listOfStudents.add(s1);
+		listOfStudents.add(s2);
+		listOfStudents.add(s3);
+		
+		return listOfStudents;
+	}
 	
 	@InitBinder
 	public void initBinder (WebDataBinder binder) {

@@ -10,10 +10,22 @@ import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.springframework.core.annotation.Order;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+@JsonInclude(value = Include.NON_NULL)
+@JsonIgnoreProperties({"studentSkillSet"})
+@JsonPropertyOrder ({"student_name", "studentHobby", "studentMobile", "studentDOB", "studentSkillSet"})
 public class Student {
 	
 
 	@Pattern(regexp = "[^0-9]*")
+	@JsonProperty("student_name")
 	private String studentName;
 	
 	@Size(min = 2, max = 10)
